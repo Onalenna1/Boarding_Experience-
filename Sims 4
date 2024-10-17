@@ -1,0 +1,112 @@
+#ifndef FLEXIBLE_BOARDING_EXPERIENCE_H
+#define FLEXIBLE_BOARDING_EXPERIENCE_H
+
+#include <string>
+#include <vector>
+
+// Forward declaration
+class Sim;
+class Family;
+class BoardingSchool;
+class Skill;
+class Trait;
+class CommunicationSystem;
+class Call;
+class Course;
+
+class Game {
+private:
+    std::string title;
+    std::vector<Sim> currentSims;
+    BoardingSchool boardingSchool;
+
+public:
+    void startGame();
+    void saveGame();
+    void loadGame();
+};
+
+class Sim {
+private:
+    std::string name;
+    int age;
+    std::vector<Skill> skills;
+    std::vector<Trait> traits;
+    Family family;
+
+public:
+    void callHome();
+    void requestTransfer();
+    void updateSkills(Skill skill);
+    void changeTrait(Trait trait);
+};
+
+class Family {
+private:
+    std::vector<Sim> familyRelations;
+
+public:
+    void addFamilyMember(Sim sim);
+    void removeFamilyMember(Sim sim);
+};
+
+class BoardingSchool {
+private:
+    std::string name;
+    std::string location;
+    std::vector<Sim> students;
+
+public:
+    void enrollStudent(Sim sim);
+    void withdrawStudent(Sim sim);
+    void addCourse(Course course);
+};
+
+class Skill {
+private:
+    std::string name;
+    int level;
+
+public:
+    void improveLevel();
+};
+
+class Trait {
+private:
+    std::string name;
+    std::string description;
+
+public:
+    void applyTrait();
+};
+
+class CommunicationSystem {
+private:
+    std::vector<Call> callHistory;
+
+public:
+    void initiateCall(Sim fromSim, Sim toFamilyMember);
+    void logCall(Call call);
+};
+
+class Call {
+private:
+    Sim fromSim;
+    Sim toSim;
+    int duration;
+
+public:
+    // Constructor, if needed
+};
+
+class Course {
+private:
+    std::string title;
+    std::string subject;
+    int credits;
+
+public:
+    void assignStudent(Sim sim);
+};
+
+#endif // FLEXIBLE_BOARDING_EXPERIENCE_H
